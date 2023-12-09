@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="MemberMapper">
+	<insert id="reg">
+		insert into member(id, pwd, email, team)
+		values(#{id}, #{pwd}, #{email}, #{team})
+	</insert>
+	<select id="login" resultType="mvo">
+		select * from member 
+		where id = #{id} and pwd = #{pwd}
+	</select>
+	<update id="last">
+	    update member set lastlogin = now() 
+	    where id = #{id}
+	</update>
+	<update id="mypage">
+		update member set pwd = #{pwd}, email = #{email}, team = #{team}
+		where id = #{id}
+	</update>
+	<delete id="remove">
+		delete from member where id = #{id}
+	</delete>
+  </mapper>

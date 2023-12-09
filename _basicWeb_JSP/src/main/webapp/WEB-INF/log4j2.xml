@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<!-- 로그를 어디에 출력할건지 정의  -->
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT"> <!-- 콘솔에 출력 --> 
+			<PatternLayout parttern="%d - %msg%n" /> <!-- parttern는 날짜와 msg를 출력할거라는 것을 보여준다 -->
+		</Console>
+	</Appenders>
+	
+	<!-- 로그를 어떻게 처리할건지 정의 -->
+	<Loggers>
+		<Root level="INFO">	<!-- 가장 상위 수준의 logger -->
+			<AppenderRef ref="Console"></AppenderRef> <!-- console Appender를 사용해서 로그 출력 -->
+		</Root>
+	</Loggers>
+</Configuration>
