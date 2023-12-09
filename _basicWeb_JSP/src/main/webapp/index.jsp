@@ -19,7 +19,7 @@
 					<li><a href="/memb/join">SIGNUP</a></li>
 				</c:if>
 				<c:if test="${ses.id ne null }">
-					<li><a href="#">BOARD</a></li>
+					<li><a href="/brd/list">BOARD</a></li>
 					<li><a href="/memb/mypage">MYPAGE</a></li>
 					<li><a href="/memb/logout">LOGOUT</a></li>
 				</c:if>
