@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -42,10 +44,33 @@ public class BoardController extends HttpServlet {
 		switch(path) {
 		case "list":
 			try {
-				List<BoardVO> list = bsv.getList();
+				log.info("list check 1");
+				PagingVO pgvo = new PagingVO();
+				
+				if(request.getParameter("pageNo") != null) {
+					int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+					int qty = Integer.parseInt(request.getParameter("qty"));
+					String type = request.getParameter("type");
+					String keyword = request.getParameter("keyword");
+					pgvo = new PagingVO(pageNo, qty, type, keyword);
+					log.info(">>> pgvo >>> " + pageNo + " / " + qty + " / " + type + " / " + keyword);
+				}
+				
+				// 페이지네이션을 적용하기 위해서 bsv.getList() method에 pgvo 객체를 전달
+				List<BoardVO> list = bsv.getList(pgvo);
 				log.info(">>> list >>> {} ", list);
+				
+				// DB에서 전체 게시글 수 가져오기 || search 값의 게시글 카운트
+				int totalCount = bsv.getTotal(pgvo);	
+				log.info("totalCount >>> {}", totalCount);
+				
+				PagingHandler ph = new PagingHandler(pgvo, totalCount);
+				
 				// 가져온 list를 "list"라는 이름으로 list.jsp에 뿌림
 				request.setAttribute("list", list);
+				// 검색어를 반영한 리스트
+				request.setAttribute("ph", ph);
+				
 				destPage = "/board/list.jsp";
 				
 			} catch (Exception e) {

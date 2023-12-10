@@ -19,6 +19,10 @@ moddate datetime DEFAULT current_timestamp,
 readcount INT DEFAULT 0,
 PRIMARY KEY (bno));
 
-# 게시판에 300개 정도 채우기
+# 게시판에 300개 채우기
 INSERT INTO board (title, writer, content)
 VALUES("titleTest","tester","contentTest");
+
+# 게시물 검색할 때 쓰려고 5개 생성
+INSERT INTO board (title, writer, content, readcount)
+VALUES("안녕","1234","내용" , 0);

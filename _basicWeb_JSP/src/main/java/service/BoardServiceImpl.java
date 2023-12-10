@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import repository.BoardDAO;
 import repository.BoardDAOImpl;
 
@@ -18,9 +19,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(PagingVO pgvo) {
 		log.info(">>> list check 2");
-		return bdao.selectList();
+		return bdao.selectList(pgvo);
+	}
+
+	@Override
+	public int getTotal(PagingVO pgvo) {
+		log.info(">>> totalCount check 2");
+		return bdao.getTotal(pgvo);
 	}
 
 }

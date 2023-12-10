@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -19,9 +20,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectList() {
+	public List<BoardVO> selectList(PagingVO pgvo) {
 		log.info(">>> list check 3");
-		return sql.selectList("BoardMapper.list");
+		return sql.selectList("BoardMapper.list", pgvo);
+	}
+
+	@Override
+	public int getTotal(PagingVO pgvo) {
+		log.info(">>> totalCount check 3");
+		return sql.selectOne("BoardMapper.total", pgvo);
 	}
 
 }
