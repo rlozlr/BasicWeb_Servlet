@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.MemberVO;
 import domain.PagingVO;
 import handler.PagingHandler;
 import service.BoardService;
@@ -74,10 +76,44 @@ public class BoardController extends HttpServlet {
 				destPage = "/board/list.jsp";
 				
 			} catch (Exception e) {
-				log.info("list error");
+				log.info(">>> list error");
 				e.printStackTrace();
 			}
 			break;
+			
+		case "register":
+			destPage = "/board/register.jsp";
+			break;
+			
+		case "insert":
+			try {
+				// ses.id 값 받아와야 하니까
+				HttpSession ses = request.getSession();
+				MemberVO mvo = (MemberVO) ses.getAttribute("ses");
+				String writer = mvo.getId();
+				
+				//register.jsp에서 받아오는 것은 title / content
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				
+				BoardVO bvo = new BoardVO(title, writer, content);
+				log.info(">>> 글쓰기 >>> {}", bvo);
+				
+				isOk = bsv.insert(bvo);
+				log.info(">>> insert " + (isOk > 0 ? "OK" : "FAIL"));
+				
+				if(isOk > 0) {
+					request.setAttribute("msg_new", "new");
+				}
+				
+				destPage = "/brd/list";
+				
+			} catch (Exception e) {
+				log.info(">>> insert error");
+				e.printStackTrace();
+			}
+			break;
+			
 		}
 		
 		

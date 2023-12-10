@@ -8,7 +8,7 @@ regdate datetime DEFAULT now(),
 lastlogin datetime DEFAULT now(),
 PRIMARY KEY(id));
 
--- 2023-10-10
+-- 2023-12-10
 CREATE TABLE board (
 bno INT NOT NULL auto_increment,
 title VARCHAR(200) NOT NULL,

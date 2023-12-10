@@ -31,4 +31,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectOne("BoardMapper.total", pgvo);
 	}
 
+	@Override
+	public int insert(BoardVO bvo) {
+		log.info(">>> insert check 3");
+		int isOk = sql.insert("BoardMapper.reg", bvo);
+		if (isOk > 0) sql.commit();
+		return isOk;
+	}
+
 }

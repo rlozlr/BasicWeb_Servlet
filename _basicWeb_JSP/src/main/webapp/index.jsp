@@ -52,7 +52,7 @@
 		const msg_remove = `<c:out value="${msg_remove}" />`;
 		console.log(msg_remove);
 		if(msg_remove == 'bye') {
-			alert('Good Bye...!\n');
+			alert('Good Bye...!');
 		}
 		
 		

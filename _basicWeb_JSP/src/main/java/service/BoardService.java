@@ -11,4 +11,6 @@ public interface BoardService {
 
 	int getTotal(PagingVO pgvo);
 
+	int insert(BoardVO bvo);
+
 }

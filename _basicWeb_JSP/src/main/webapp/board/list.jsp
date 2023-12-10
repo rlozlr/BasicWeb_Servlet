@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>자유게시판</title>
 </head>
 <body>
-	<h1>정보 게시판</h1>
+	<h1>자유게시판</h1>
 	
 	<!-- 검색 -->
 	<div>
@@ -53,6 +53,7 @@
 		</c:forEach>
 	</table>
 	
+	<a href ="/brd/register"><button>글쓰기</button></a>
 	<!-- 페이지네이션 -->
 	<div>
 		<!-- prev -->
@@ -69,7 +70,13 @@
 		</c:if>
 	</div>
 	
-	<a href ="#"><button>글쓰기</button></a>
+	<script type="text/javascript">
+		const msg_new = `<c:out value="${msg_new}" />`;
+		console.log(msg_new);
+		if(msg_new == 'new') {
+			alert('게시글을 등록했습니다.');
+		}
+	</script>
 	
 </body>
 </html>

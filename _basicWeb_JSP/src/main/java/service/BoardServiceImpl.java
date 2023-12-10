@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.getTotal(pgvo);
 	}
 
+	@Override
+	public int insert(BoardVO bvo) {
+		log.info(">>> insert check 2");
+		return bdao.insert(bvo);
+	}
+
 }
