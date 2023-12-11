@@ -36,4 +36,24 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.insert(bvo);
 	}
 
+	@Override
+	public BoardVO getDetail(int bno) {
+		log.info(">>> detail check 2");
+		// 조회수 +1
+		int isOk = bdao.readcountUp(bno);
+		return bdao.getDetail(bno);
+	}
+
+	@Override
+	public int remove(int bno) {
+		log.info(">>> remove check 2");
+		return bdao.delete(bno);
+	}
+
+	@Override
+	public int modify(BoardVO bvo) {
+		log.info(">>> edit check 2");
+		return bdao.update(bvo);
+	}
+
 }

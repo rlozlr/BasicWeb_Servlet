@@ -13,4 +13,12 @@ public interface BoardDAO {
 
 	int insert(BoardVO bvo);
 
+	BoardVO getDetail(int bno);
+
+	int delete(int bno);
+
+	int update(BoardVO bvo);
+
+	int readcountUp(int bno);
+
 }

@@ -13,4 +13,10 @@ public interface BoardService {
 
 	int insert(BoardVO bvo);
 
+	BoardVO getDetail(int bno);
+
+	int remove(int bno);
+
+	int modify(BoardVO bvo);
+
 }

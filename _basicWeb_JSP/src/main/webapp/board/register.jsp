@@ -16,7 +16,7 @@
 		<input type="hidden" value="${ses.id }"><br>
 		내용 :<br>
 		<textarea rows="10" cols="30" name=content></textarea><br>
-		<button type="submit">완료</button>
+		<button type="submit">등록</button>
 		<a href="/brd/list"><button type="button">취소</button></a>
 	</form>
 </body>

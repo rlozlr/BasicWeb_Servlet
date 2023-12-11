@@ -114,6 +114,76 @@ public class BoardController extends HttpServlet {
 			}
 			break;
 			
+		case "detail":
+			try {
+				// list.jsp에서 bno 값 가져오기
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				log.info(">>> detail check1");
+				
+				BoardVO bvo = bsv.getDetail(bno);
+				log.info(">>> bvo >>> {}", bvo);
+				// detail.jsp에 해당 bno 정보 뿌리기
+				request.setAttribute("bvo", bvo);
+				
+				destPage = "/board/detail.jsp";
+				
+			} catch (Exception e) {
+				log.info(">>> detail error");
+				e.printStackTrace();
+			}
+			break;
+		
+		case "remove":
+			try {
+				// detail.jsp에서 bno 값 받아오기
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				isOk = bsv.remove(bno);
+				log.info(">>> remove check1");
+				log.info(">>> remove >>> " + (isOk > 0 ? "OK" : "FAIL"));
+				
+				destPage = "list";
+				
+			} catch (Exception e) {
+				log.info(">>> remove error");
+				e.printStackTrace();
+			}
+			break;
+			
+		case "modify":
+			try {
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				// detail에서 생성해둔 getDetail(bno) method를 사용해서 BoardVO 객체에 데이터를 넣어줌
+				BoardVO bvo = bsv.getDetail(bno);
+				// 데이터를 받아 온 객체 bvo를 화면에 뿌림
+				request.setAttribute("bvo", bvo);
+				destPage = "/board/modify.jsp";
+				
+			} catch (Exception e) {
+				log.info(">>> modify error");
+				e.printStackTrace();
+			}
+			break;
+			
+		case "edit":
+			try {
+				// modify.jsp에서 bno 값을 가져온다.
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				BoardVO	bvo = new BoardVO(bno, title, content);
+				log.info(">>> bvo >>> {}", bvo);
+				log.info(">>> edit chck 1");
+				
+				isOk = bsv.modify(bvo);
+				log.info(">>> eidt >>> "+(isOk > 0 ? "OK" : "FAIL"));
+				
+				destPage = "list";
+				
+			} catch (Exception e) {
+				log.info(">>> edit error");
+				e.printStackTrace();
+			}
+			break;
 		}
 		
 		
