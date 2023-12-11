@@ -56,4 +56,10 @@ public class BoardServiceImpl implements BoardService {
 		return bdao.update(bvo);
 	}
 
+	@Override
+	public String getFileName(int bno) {
+		log.info(">>>> getFileName check 2");
+		return bdao.getFileName(bno);
+	}
+
 }

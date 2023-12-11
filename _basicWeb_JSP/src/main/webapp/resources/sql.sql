@@ -26,3 +26,6 @@ VALUES("titleTest","tester","contentTest");
 # 게시물 검색할 때 쓰려고 5개 생성
 INSERT INTO board (title, writer, content, readcount)
 VALUES("안녕","1234","내용" , 0);
+
+-- 2023-12-11
+ALTER TABLE board ADD imageFile VARCHAR(100);

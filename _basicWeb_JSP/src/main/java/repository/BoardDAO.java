@@ -21,4 +21,6 @@ public interface BoardDAO {
 
 	int readcountUp(int bno);
 
+	String getFileName(int bno);
+
 }

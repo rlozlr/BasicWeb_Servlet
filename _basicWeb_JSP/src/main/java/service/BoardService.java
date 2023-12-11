@@ -19,4 +19,6 @@ public interface BoardService {
 
 	int modify(BoardVO bvo);
 
+	String getFileName(int bno);
+
 }

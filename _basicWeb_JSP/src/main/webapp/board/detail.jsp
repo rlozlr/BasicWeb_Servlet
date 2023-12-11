@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>상세 페이지</h1>
-	
+	<img alt="" src="/_fileUpload/${bvo.boardFile }">
 	<table>
 		<tr>
 			<th>제목</th>

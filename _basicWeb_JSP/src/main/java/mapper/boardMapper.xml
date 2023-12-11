@@ -16,8 +16,8 @@
   	</select> 
   	
   	<insert id="reg">
-  		insert into board(title, writer, content)
-  		value (#{title}, #{writer}, #{content})
+  		insert into board(title, writer, content, boardFile)
+  		value (#{title}, #{writer}, #{content}, #{boardFile})
   	</insert>
   	
   	<select id="detail" resultType="bvo">
@@ -29,7 +29,8 @@
  	</delete> 
  	
  	<update id="edit">
- 		update board set title = #{title}, content = #{content}, moddate = now()
+ 		update board set title = #{title}, content = #{content},
+ 		moddate = now(), boardFile = #{boardFile}
  		where bno = #{bno}
  	</update>
  	
@@ -38,6 +39,9 @@
  		where bno = #{bno}
  	</update>
   
+  	<select id="fileName" resultType="String">
+		select boardFile from board where bno = #{bno}
+	</select>
   
 	 <!-- 예비구문 -->
 	 <sql id="search">

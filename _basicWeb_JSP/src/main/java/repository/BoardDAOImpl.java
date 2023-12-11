@@ -70,4 +70,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return isOk;
 	}
 
+	@Override
+	public String getFileName(int bno) {
+		log.info(">>>> getFileName check 3");
+		return sql.selectOne("BoardMapper.fileName", bno);
+	}
+
 }
