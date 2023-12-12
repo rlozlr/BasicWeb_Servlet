@@ -1,0 +1,27 @@
+@charset "UTF-8";
+main{
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../image/attenBook.jpg');
+    background-position: center;
+    background-size: cover;
+    color: whitesmoke;
+}
+
+table {
+    background-color: rgba(1, 1, 28, 0.943);
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+}
+
+th, td {
+    padding-bottom: 10px;
+}
+
+td{
+    padding-right: 10px;
+}
