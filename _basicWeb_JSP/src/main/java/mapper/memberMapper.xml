@@ -22,4 +22,8 @@
 	<delete id="remove">
 		delete from member where id = #{id}
 	</delete>
+	
+	<select id="list" resultType="mvo">
+		select * from member order by lastlogin desc
+	</select>
   </mapper>

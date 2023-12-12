@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -122,8 +123,8 @@ public class MemberController extends HttpServlet {
 				log.info(">>> ses mvo >>> {}",mvo);
 				
 				// lastLogin update
-				isOk = msv.lastLogin(mvo.getId());
-				log.info(">>> lastLogin >>> {}", (isOk > 0) ? "OK" : "FAIL");
+				// isOk = msv.lastLogin(mvo.getId());
+				// log.info(">>> lastLogin >>> {}", (isOk > 0) ? "OK" : "FAIL");
 				// 세션 무효화 (세션 끊기)
 				ses.invalidate();
 				
@@ -224,6 +225,41 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info(">>> remove error");
+			}
+			break;
+			
+		case "attend":
+			try {
+				// 로그인 정보
+				HttpSession ses = request.getSession();
+				// ses에서 mvo 객체로 가져오기
+				MemberVO mvo = (MemberVO)ses.getAttribute("ses");
+				log.info(">>> ses mvo >>> {}",mvo);
+				
+				// lastLogin update
+				isOk = msv.lastLogin(mvo.getId());
+				log.info(">>> 출석을 위한 lastLogin update  >>> {}", (isOk > 0) ? "OK" : "FAIL");
+				
+				destPage = "/memb/attend_book";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>> atten error");
+			}
+			break;
+			
+		case "attend_book":
+			try {
+				log.info("memList check 1");
+				List<MemberVO> list = msv.getList();
+
+				log.info("memList >>> {} " + list);
+				request.setAttribute("list", list);
+				destPage = "/member/attend.jsp";
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>> memList error");
 			}
 			break;
 			

@@ -30,7 +30,9 @@
 		<c:if test="${ses.id ne null }">
 			<div>
 				[ ${ses.id } ]님 환영합니다.<br>
-				최근 접속일 : ${ses.lastlogin }
+				최근 접속일 : ${ses.lastlogin }<br>
+				<a href="/memb/attend"><button>출석하기</button></a>
+				<a href="/memb/attend_book"><button>출석부</button></a>
 			</div>
 		</c:if>
 	</main>

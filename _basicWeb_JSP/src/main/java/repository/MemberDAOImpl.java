@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +57,12 @@ public class MemberDAOImpl implements MemberDAO {
 	    int isOk = sql.update("MemberMapper.remove", id);
 	    if (isOk > 0) sql.commit();
 	    return isOk;
+	}
+
+	@Override
+	public List<MemberVO> selectList() {
+		log.info(">>> attend_book check 3");
+		return sql.selectList("MemberMapper.list");
 	}
 
 }
