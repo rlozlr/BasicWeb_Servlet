@@ -44,5 +44,39 @@
 	</c:if>
 	<a href="/brd/list"><button>목록</button></a>
 	
+		<!-- comment line -->
+	<input type="hidden" id="cmtWriter" value="${ses.id }"><br>
+	<hr>
+	<div>
+		댓글 <br>
+		${ses.id }<br>
+		<input type="text" id="cmtText" placeholder="댓글을 작성해주세요.">
+		<button type="button" id="cmtAddBtn" >등록</button>
+	</div>
+	<hr>
+	
+	<!-- 댓글 표시 라인 -->
+	<div id ="commentLine">
+		<div>cno, writer, regdate</div>
+		<div>
+			<button>수정</button>  <button>삭제</button><br>
+			<input value="content">
+		</div>
+	</div>
+	
+	<!-- script는 순서대로 써야한다. 값을 못불러 올 수도 있기 때문 -->
+	<script type="text/javascript">
+		const bnoVal = `<c:out value="${bvo.bno}" />`
+		console.log("게시번호 : " + bnoVal);	
+		const userId = `<c:out value="${ses.id}" />`
+		console.log("작성자 : " + userId);	
+	</script>
+	
+	<script src="/resources/board_detail.js"></script>
+	
+	<script type="text/javascript">
+	 	printCommentList(bnoVal);
+	</script>
+	
 </body>
 </html>

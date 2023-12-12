@@ -28,4 +28,15 @@ INSERT INTO board (title, writer, content, readcount)
 VALUES("안녕","1234","내용" , 0);
 
 -- 2023-12-11
-ALTER TABLE board ADD imageFile VARCHAR(100);
+ALTER TABLE board ADD boardFile VARCHAR(100);
+
+-- 2023-12-12
+CREATE TABLE comment (
+cno INT AUTO_INCREMENT,
+bno INT NOT NULL,
+-- 회원만 쓰게 하려면 default 쓰지 말고 not null
+writer VARCHAR(100) NOT NULL,
+content VARCHAR(1000) NOT NULL,
+regdate DATETIME DEFAULT NOW(),
+PRIMARY KEY(cno)
+);
