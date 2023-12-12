@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.CommentVO;
-import service.CommentSerivceImpl;
+import service.CommentServiceImpl;
 import service.CommentService;
 
 @WebServlet("/cmt/*")
@@ -30,7 +30,7 @@ public class CommentController extends HttpServlet {
 	private int isOk;
        
     public CommentController() {
-    	csv = new CommentSerivceImpl();
+    	csv = new CommentServiceImpl();
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,6 +113,7 @@ public class CommentController extends HttpServlet {
 					
 					jsonObjList.add(jsonObjArr[i]);
 				}
+				
 				// '[{..}, {..}, {..}]'
 				String jsonData = jsonObjList.toJSONString();
 				
@@ -136,7 +137,59 @@ public class CommentController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "modify":
+			try {
+				StringBuffer sb = new StringBuffer();
+				String line = null;
+				BufferedReader br =request.getReader();	// 댓글 객체
+				
+				while((line = br.readLine()) != null ) {
+					sb.append(line);
+				}
+				
+				log.info(">>>> sb >> {} ", sb.toString());
+				// 객체로 생성
+				// JSON은 전부 다 import org.json.simple 사용
+				JSONParser parser = new JSONParser();
+				JSONObject jsonObj = (JSONObject)parser.parse(sb.toString());	// key : value
+				
+				// key를 이용하여 value를 추출 
+				int cno = Integer.parseInt(jsonObj.get("cnoVal").toString());
+				String content = jsonObj.get("content").toString();
+				
+				CommentVO cvo = new CommentVO(cno, content);
+				log.info("commentVO >>> {} ", cvo);
+				isOk = csv.modify(cvo);
+				log.info("modify >>> {} ", ((isOk > 0) ? "OK" : "Fail"));
+				
+				// 결과 데이터 전송	=> 화면에 출력 (response 객체의 body에 기록)
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+			} catch (Exception e) {
+				log.info(">>> comment remove error~!!");
+				e.printStackTrace();
+			}
+			break;
+			
+		case "remove":
+			try {
+		        
+				int cno = Integer.parseInt(request.getParameter("cnoVal"));
+				isOk = csv.remove(cno);
+				log.info("remove >>> {} ", (isOk > 0 ? "OK" : "Fail"));
+				
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+			} catch (Exception e) {
+				log.info(">>> comment remove error~!!");
+				e.printStackTrace();
+			}
+			break;
 		}
+		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

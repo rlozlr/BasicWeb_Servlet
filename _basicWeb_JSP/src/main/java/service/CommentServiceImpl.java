@@ -10,11 +10,11 @@ import domain.CommentVO;
 import repository.CommentDAO;
 import repository.CommentDAOImpl;
 
-public class CommentSerivceImpl implements CommentService {
+public class CommentServiceImpl implements CommentService {
 	private static final Logger log = LoggerFactory.getLogger(CommentController.class);
 	private CommentDAO cdao;
 	
-	public CommentSerivceImpl() {
+	public CommentServiceImpl() {
 		cdao = new CommentDAOImpl();
 	}
 
@@ -30,4 +30,20 @@ public class CommentSerivceImpl implements CommentService {
 		return cdao.getList(bno);
 	}
 
+	@Override
+	public int modify(CommentVO cvo) {
+		log.info("comment modify check 2");
+		return cdao.update(cvo);
+	}
+
+	@Override
+	public int remove(int cno) {
+		log.info("comment remove check 2");
+		return cdao.delete(cno);
+	}
+
+	public int removeAll(int bno) {
+		log.info("comment removeAll check 2");
+		return cdao.removeAll(bno);
+	}
 }

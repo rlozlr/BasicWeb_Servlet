@@ -83,11 +83,80 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
 		postCommentToServer(cmtData).then(result => {
 			console.log(result);
 			if(result > 0) {
-				alert('댓글등록 성공~!!');
                 document.getElementById('cmtText').value = '';
 			}
 			// 댓글출력
             printCommentList(bnoVal);
 		})
     }
+})
+
+// 수정 : cno, content  => result isOk
+async function updateCommentFromServer(cnoVal, cmtText) {
+    try {
+        const url = "/cmt/modify";
+        const config = {
+            method : 'post',
+            headers :{
+                'Content-Type' : 'application/json; charset=utf-8'
+            },
+            // content:cmtText 이렇게 쓰면 content로 java에서 쓰면 된다.
+            body: JSON.stringify({cnoVal, content:cmtText})
+        }
+
+        const resp = await fetch(url, config);
+        const result = await resp.text();
+        return result;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// 삭제 : cno => result isOk
+async function removeCommentFromServer(cnoVal) {
+    try {
+        const url = '/cmt/remove?cnoVal='+cnoVal;
+        const resp = await fetch(url);
+        const result = await resp.text();
+        return result;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// 삭제버튼이 클릭되면... 수정버튼이 클릭되면...
+document.addEventListener('click', (e)=>{
+    console.log(e.target);
+    // 수정 버튼이 클릭되면...
+    if(e.target.classList.contains('cmtModBtn')) {
+        let cnoVal = e.target.dataset.cno;
+        console.log(cnoVal);
+        let div = e.target.closest('div');  // 타겟을 기준으로 가장 가까운 div를 찾기
+        let cmtText = div.querySelector('.cmtText').value;
+        console.log(cmtText);
+        updateCommentFromServer(cnoVal, cmtText).then(result => {
+            // isOk
+            if(result > 0) {
+                alert('댓글 수정 성공~!!');
+                printCommentList(bnoVal);
+
+            }
+        })
+    }
+
+    // 삭제버튼이 클릭되면...
+    if(e.target.classList.contains('cmtDelBtn')) {
+        let cnoVal = e.target.dataset.cno;  // data-cno의 값을 추출
+        console.log(cnoVal);
+        removeCommentFromServer(cnoVal).then(result =>{
+            // result = isOk
+            if(result > 0) {
+                alert('댓글 삭제 성공~!!');
+                printCommentList(bnoVal);
+            }
+        })
+    }
+
 })

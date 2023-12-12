@@ -13,6 +13,7 @@ import repository.BoardDAOImpl;
 public class BoardServiceImpl implements BoardService {
 	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
 	private BoardDAO bdao;
+	private CommentServiceImpl csv = new CommentServiceImpl();
 	
 	public BoardServiceImpl() {
 		bdao = new BoardDAOImpl();
@@ -46,7 +47,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int remove(int bno) {
-		log.info(">>> remove check 2");
+		log.info(">>>> remove check 2");
+		// 댓글 먼저 삭제하고 글 지우기
+		int isOk = csv.removeAll(bno);
 		return bdao.delete(bno);
 	}
 
