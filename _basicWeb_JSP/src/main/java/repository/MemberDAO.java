@@ -2,6 +2,7 @@ package repository;
 
 import java.util.List;
 
+import domain.BoardVO;
 import domain.MemberVO;
 
 public interface MemberDAO {
@@ -17,5 +18,7 @@ public interface MemberDAO {
 	int delete(String id);
 
 	List<MemberVO> selectList();
+
+	List<BoardVO> selectList(String writer);
 
 }

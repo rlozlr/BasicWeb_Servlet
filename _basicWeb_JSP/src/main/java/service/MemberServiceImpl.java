@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import domain.BoardVO;
 import domain.MemberVO;
 import repository.MemberDAO;
 import repository.MemberDAOImpl;
@@ -51,6 +52,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> getList() {
 		log.info(">>> attned_book check 2");
 		return mdao.selectList();
+	}
+
+	@Override
+	public List<BoardVO> myList(String writer) {
+		log.info(">>> myList check 2");
+		return mdao.selectList(writer);
 	}
 
 }

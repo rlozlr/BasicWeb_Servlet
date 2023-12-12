@@ -32,12 +32,13 @@
 				<td>${mvo.regdate }</td>
 			</tr>
 			<tr>
-				<th>최근 접속일</th>
+				<th>마지막 출석일</th>
 				<td>${mvo.lastlogin }</td>
 			</tr>
 		</table>
 		<button type="submit">수정</button>
 		<a href="/memb/remove?${ses.id }"><button type="button">회원탈퇴</button></a>
+		<a href="/memb/myList"><button type="button">나의 게시물</button></a>
 	</form>
 	
 	<script type="text/javascript">

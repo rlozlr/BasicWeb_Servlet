@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import domain.BoardVO;
 import domain.MemberVO;
 import orm.DatabaseBuilder;
 
@@ -63,6 +64,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberVO> selectList() {
 		log.info(">>> attend_book check 3");
 		return sql.selectList("MemberMapper.list");
+	}
+
+	@Override
+	public List<BoardVO> selectList(String writer) {
+		log.info(">>> myList check 3");
+		return sql.selectList("MemberMapper.myList", writer);
 	}
 
 }

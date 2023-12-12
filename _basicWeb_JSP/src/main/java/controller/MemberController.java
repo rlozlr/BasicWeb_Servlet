@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import domain.BoardVO;
 import domain.MemberVO;
 import service.MemberService;
 import service.MemberServiceImpl;
@@ -260,6 +261,26 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info(">>> memList error");
+			}
+			break;
+			
+		case "myList":
+			try {
+				log.info(">>> myList check 1");
+				HttpSession ses = request.getSession();
+				MemberVO mvo = (MemberVO) ses.getAttribute("ses");
+				String writer = mvo.getId();
+				log.info(">>> ses mvo >>> {} " + mvo);
+				
+				List<BoardVO> myList = msv.myList(writer);
+				log.info(">>> myList >>> {} " + myList);
+				request.setAttribute("myList", myList);
+				
+				destPage = "/member/myList.jsp";
+				
+			} catch (Exception e) {
+				log.info("mine error !!");
+				e.printStackTrace();
 			}
 			break;
 			

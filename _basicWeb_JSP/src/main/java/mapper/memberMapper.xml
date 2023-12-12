@@ -22,8 +22,11 @@
 	<delete id="remove">
 		delete from member where id = #{id}
 	</delete>
-	
 	<select id="list" resultType="mvo">
 		select * from member order by lastlogin desc
+	</select>
+	<select id="myList" resultType="bvo">
+		select * from board where writer = #{writer}
+		order by bno desc
 	</select>
   </mapper>
