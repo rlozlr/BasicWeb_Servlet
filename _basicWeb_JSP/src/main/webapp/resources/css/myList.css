@@ -7,14 +7,15 @@ main {
     height: calc(100vh - 60px);
     color: whitesmoke;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+   	justify-content: center;
+    flex-direction: column;
 }
-table {
-    margin-top: -200px;
+.list{
     padding: 20px;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.72);
+    color: whitesmoke;
 }
 th, td {
     padding-bottom: 10px;
@@ -46,4 +47,9 @@ button{
     margin: auto;
     margin-top: 10px;
     margin-left: 10px;
+}
+.regBnt{
+	float : right;
+    margin-top: 20px;
+	margin-right: 50px;
 }

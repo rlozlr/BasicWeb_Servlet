@@ -1,0 +1,42 @@
+@charset "UTF-8";
+th {
+    padding: 10px;
+	color : whitesmoke;
+}
+textarea{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245, 0.726);
+    padding: 10px; 
+    margin-top: 10px;
+	width: 600px;
+}
+.add-file{
+    width: 200px;
+    background: none;
+    color : whitesmoke;
+}
+form{
+    width: 800px;
+    display: flex;
+    margin-left: 100px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+input{
+    margin-top: 10px;
+    width: 600px;
+}
+.btn-box{
+    display: flex;
+    align-self: flex-end;
+	margin-right: 100px;
+}
+button{
+    margin-left: 10px;
+}
+.show-container{
+    display: flex;
+    flex-direction: row;
+}

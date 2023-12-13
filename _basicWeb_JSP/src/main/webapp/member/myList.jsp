@@ -26,7 +26,7 @@
 	</header>
 	<main>
 		<c:if test="${not empty myList }">
-			<table>
+			<table class="list">
 				<tr>
 				<!-- nno, title, writer, regdate, readcount -->
 					<th>No</th>
@@ -39,14 +39,14 @@
 					<tr>
 						<!-- title 눌렀을 때 게시글 상세로 이동할 수 있게  -->
 						<td>${bvo.bno }</td>
-						<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.title }</a></td>
+						<td><a href="/brd/detail?bno=${bvo.bno }"><img alt="" src="/_fileUpload/th_${bvo.boardFile }">${bvo.title }</a></td>
 						<td>${bvo.writer }</td>
 						<td>${bvo.regdate }</td>
 						<td>${bvo.readcount }</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<br>
+			<a href ="/brd/register"><button class="regBnt">글쓰기</button></a>
 		</c:if>
 		<c:if test="${empty myList}">
 			<div class="noList">

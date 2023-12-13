@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.detail-table{
+    margin-left: 30px;
+	margin-left: 100px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+th {
+    padding: 10px;
+}
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 60px;
+}
+button {
+	margin-left: 30px;
+}
+.cmt-reg, #commentLine{
+    margin-left: 20px;
+
+}
+input {
+    width: 260px;
+    height: 20px;
+	margin-top: 3px;
+}
+.show-container{
+	margin-left: 150px;
+	margin-top: 150px;
+	margin-right: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

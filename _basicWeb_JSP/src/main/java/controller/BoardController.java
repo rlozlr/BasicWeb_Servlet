@@ -326,7 +326,7 @@ public class BoardController extends HttpServlet {
 						break;
 					}
 				}
-				
+				log.info(">>>> check bvo>>>>{}",bvo);
 				isOk = bsv.modify(bvo);
 				log.info(">>> eidt >>> " + (isOk > 0 ? "OK" : "FAIL"));
 				destPage = "list";	// 내부 list case로 이동
