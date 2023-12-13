@@ -12,12 +12,12 @@
 <body>
 	<header>
 		<div class="logo">
-			<a href="/index.jsp"><i class="bi bi-cpu logo"></i></a></li>
+			<a href="/index.jsp"><i class="bi bi-cpu logo"></i></a>
 		</div>
 		<div class="top-menu">
 			<ul class="ul">
 				<li><a href="/member/login.jsp">LOGIN</a></li>
-				<li><a href="/memb/join">SIGNUP</a></li>
+				<li><a href="/member/join.jsp">SIGNUP</a></li>
 			</ul>
 		</div>
 	</header>

@@ -12,7 +12,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<a href="/index.jsp"><i class="bi bi-cpu logo"></i></a></li>
+			<a href="/index.jsp"><i class="bi bi-cpu logo"></i></a>
 		</div>
 		<div class="top-menu">
 			<ul class="ul">
