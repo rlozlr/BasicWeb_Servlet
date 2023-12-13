@@ -49,8 +49,10 @@
 			<br>
 		</c:if>
 		<c:if test="${empty myList}">
-			<h4>등록된 게시글이 없습니다.</h4>
-			<br><a href="/brd/register"><button>글쓰기</button></a>
+			<div class="noList">
+				<h4>등록된 게시글이 없습니다.</h4>
+				<a href="/brd/register"><button>글쓰기</button></a>
+			</div>
 		</c:if>
 	</main>
 	<footer>
