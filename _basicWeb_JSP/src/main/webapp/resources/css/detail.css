@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.list-container {
+    margin-top: 120px;
+}
+
+
 .detail-table{
     margin-left: 30px;
 	margin-left: 100px;
